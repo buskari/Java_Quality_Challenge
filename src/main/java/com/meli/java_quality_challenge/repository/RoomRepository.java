@@ -57,6 +57,12 @@ public class RoomRepository implements IRepository<Room> {
 
     @Override
     public Boolean delete(UUID id) {
-        return null;
+        List<Room> list = roomList.stream().filter(room -> room.getId().equals(id)).collect(Collectors.toList());
+
+        if (list.size() == 1) {
+            roomList.remove(list.get(0));
+        }
+
+        return false;
     }
 }
