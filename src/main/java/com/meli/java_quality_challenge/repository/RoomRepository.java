@@ -22,12 +22,12 @@ public class RoomRepository implements IRepository<Room> {
     }
 
     @Override
-    public List<Room> read(UUID id) {
-        return null;
+    public List<Room> read() {
+        return roomList;
     }
 
     @Override
-    public Room read() {
+    public Room read(UUID id) {
         return null;
     }
 
