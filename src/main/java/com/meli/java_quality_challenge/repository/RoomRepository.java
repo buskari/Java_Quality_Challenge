@@ -10,14 +10,15 @@ public class RoomRepository implements IRepository<Room> {
     List<Room> roomList = new ArrayList<>();
 
     @Override
-    public List<Room> create(List<Room> type) {
-        roomList.addAll(type);
-        return type;
+    public List<Room> create(List<Room> rooms) {
+        roomList.addAll(rooms);
+        return rooms;
     }
 
     @Override
-    public Room create(Room type) {
-        return null;
+    public Room create(Room room) {
+        roomList.add(room);
+        return room;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class RoomRepository implements IRepository<Room> {
     }
 
     @Override
-    public Boolean update(Room type) {
+    public Boolean update(Room room) {
         return null;
     }
 
