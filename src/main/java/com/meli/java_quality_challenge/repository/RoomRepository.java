@@ -5,6 +5,7 @@ import com.meli.java_quality_challenge.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class RoomRepository implements IRepository<Room> {
     List<Room> roomList = new ArrayList<>();
@@ -28,7 +29,17 @@ public class RoomRepository implements IRepository<Room> {
 
     @Override
     public Room read(UUID id) {
-        return null;
+        List<Room> list = roomList
+                .stream()
+                .filter(
+                        room -> room.getId().equals(id)
+                ).collect(Collectors.toList());
+
+        if (list.size() == 1) {
+            return list.get(0);
+        } else {
+            throw new RuntimeException("There is no room with id " + id);
+        }
     }
 
     @Override
