@@ -37,14 +37,22 @@ public class RoomRepository implements IRepository<Room> {
 
         if (list.size() == 1) {
             return list.get(0);
-        } else {
-            throw new RuntimeException("There is no room with id " + id);
         }
+
+        throw new RuntimeException("There is no room with id " + id);
     }
 
     @Override
-    public Boolean update(Room room) {
-        return null;
+    public Boolean update(Room roomToUpdate) {
+        UUID id = roomToUpdate.getId();
+        List<Room> list = roomList.stream().filter(room -> room.getId().equals(id)).collect(Collectors.toList());
+
+        if (list.size() == 1) {
+            roomList.set(roomList.indexOf(list.get(0)), roomToUpdate);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
