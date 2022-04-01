@@ -6,8 +6,8 @@ import java.util.UUID;
 public interface IRepository<T> {
     List<T> create(List<T> type);
     T create(T type);
-    List<T> read(UUID id);
-    T read();
+    List<T> read();
+    T read(UUID id);
     Boolean update(T type);
     Boolean delete(UUID id);
 }
