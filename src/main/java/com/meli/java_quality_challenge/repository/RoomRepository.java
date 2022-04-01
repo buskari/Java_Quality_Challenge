@@ -2,14 +2,17 @@ package com.meli.java_quality_challenge.repository;
 
 import com.meli.java_quality_challenge.model.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class RoomRepository implements IRepository<Room> {
+    List<Room> roomList = new ArrayList<>();
 
     @Override
     public List<Room> create(List<Room> type) {
-        return null;
+        roomList.addAll(type);
+        return type;
     }
 
     @Override
