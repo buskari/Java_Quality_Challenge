@@ -17,12 +17,6 @@ public class RoomRepository implements IRepository<Room> {
     }
 
     @Override
-    public Room create(Room room) {
-        roomList.add(room);
-        return room;
-    }
-
-    @Override
     public List<Room> read() {
         return roomList;
     }

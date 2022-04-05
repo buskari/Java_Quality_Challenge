@@ -17,12 +17,6 @@ public class DistrictRepository implements IRepository<District> {
     }
 
     @Override
-    public District create(District district) {
-        districtList.add(district);
-        return district;
-    }
-
-    @Override
     public List<District> read() {
         return districtList;
     }

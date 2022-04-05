@@ -17,12 +17,6 @@ public class PropertyRepository implements IRepository<Property> {
     }
 
     @Override
-    public Property create(Property property) {
-        propertyList.add(property);
-        return property;
-    }
-
-    @Override
     public List<Property> read() {
         return propertyList;
     }
