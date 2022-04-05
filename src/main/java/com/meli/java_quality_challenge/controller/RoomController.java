@@ -4,12 +4,10 @@ import com.meli.java_quality_challenge.model.Room;
 import com.meli.java_quality_challenge.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class RoomController {
@@ -29,5 +27,10 @@ public class RoomController {
     @GetMapping("/api/v1/room")
     public ResponseEntity<List<Room>> getRoom() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/v1/room/{id}")
+    public ResponseEntity<Room> getRoom(@PathVariable UUID id) {
+        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 }
