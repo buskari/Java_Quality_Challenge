@@ -12,4 +12,8 @@ public class RoomService {
     public List<Room> saveRoom(List<Room> roomList) {
         return repository.create(roomList);
     }
+
+    public List<Room> findAll() {
+        return repository.read();
+    }
 }
