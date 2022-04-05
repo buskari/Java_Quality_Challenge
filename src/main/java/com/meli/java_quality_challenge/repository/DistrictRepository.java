@@ -37,26 +37,27 @@ public class DistrictRepository implements IRepository<District> {
     }
 
     @Override
-    public Boolean update(District districtToUpdate) {
+    public District update(District districtToUpdate) {
         UUID id = districtToUpdate.getId();
         List<District> list = districtList.stream().filter(district -> district.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             districtList.set(districtList.indexOf(list.get(0)), districtToUpdate);
-            return true;
+            return districtToUpdate;
         }
 
-        return false;
+        throw new RuntimeException("There is no district with id " + id + ". Please, create a new one");
     }
 
     @Override
-    public Boolean delete(UUID id) {
+    public String delete(UUID id) {
         List<District> list = districtList.stream().filter(district -> district.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             districtList.remove(list.get(0));
+            return "The district of id " + id + " was successfully deleted";
         }
 
-        return false;
+        throw new RuntimeException("There is no district with id " + id + "to delete");
     }
 }

@@ -7,6 +7,6 @@ public interface IRepository<T> {
     List<T> create(List<T> type);
     List<T> read();
     T read(UUID id);
-    Boolean update(T type);
-    Boolean delete(UUID id);
+    T update(T type);
+    String delete(UUID id);
 }

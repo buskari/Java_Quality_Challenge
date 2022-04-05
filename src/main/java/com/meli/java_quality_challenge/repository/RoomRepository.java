@@ -37,26 +37,27 @@ public class RoomRepository implements IRepository<Room> {
     }
 
     @Override
-    public Boolean update(Room roomToUpdate) {
+    public Room update(Room roomToUpdate) {
         UUID id = roomToUpdate.getId();
         List<Room> list = roomList.stream().filter(room -> room.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             roomList.set(roomList.indexOf(list.get(0)), roomToUpdate);
-            return true;
+            return roomToUpdate;
         }
 
-        return false;
+        throw new RuntimeException("There is no room with id " + id + ". Please, create a new one");
     }
 
     @Override
-    public Boolean delete(UUID id) {
+    public String delete(UUID id) {
         List<Room> list = roomList.stream().filter(room -> room.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             roomList.remove(list.get(0));
+            return "The room of id " + id + " was successfully deleted";
         }
 
-        return false;
+        throw new RuntimeException("There is no room with id " + id + " to delete");
     }
 }

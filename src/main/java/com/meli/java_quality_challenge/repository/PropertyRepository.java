@@ -37,26 +37,27 @@ public class PropertyRepository implements IRepository<Property> {
     }
 
     @Override
-    public Boolean update(Property propertyToUpdate) {
+    public Property update(Property propertyToUpdate) {
         UUID id = propertyToUpdate.getId();
         List<Property> list = propertyList.stream().filter(property -> property.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             propertyList.set(propertyList.indexOf(list.get(0)), propertyToUpdate);
-            return true;
+            return propertyToUpdate;
         }
 
-        return false;
+        throw new RuntimeException("There is no property with id " + id + ". Please, create a new one");
     }
 
     @Override
-    public Boolean delete(UUID id) {
+    public String delete(UUID id) {
         List<Property> list = propertyList.stream().filter(property -> property.getId().equals(id)).collect(Collectors.toList());
 
         if (list.size() == 1) {
             propertyList.remove(list.get(0));
+            return "The property of id " + id + " was successfully deleted";
         }
 
-        return false;
+        throw new RuntimeException("There is no property with id " + id + "to delete");
     }
 }
